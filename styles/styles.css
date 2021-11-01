@@ -1,0 +1,24 @@
+html {
+    font-size: 14px;
+}
+.nav-link {
+    position: relative;
+    padding: 1rem;
+    font-weight: 500;
+    color: #b34848;
+}
+h1,
+.h1,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    color: #b34848;
+}
+.blog-post-title:hover {
+    text-decoration: underline;
+}
