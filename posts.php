@@ -1,6 +1,3 @@
-
-
-<?php include('sidebar.php') ?>
 <?php include('dbConnect.php') ?>
 
 
@@ -89,8 +86,7 @@
     </div><!-- /.row -->
 
 </main><!-- /.container -->
-
-
+<?php include('sidebar.php') ?>
 </body>
 <?php include('footer.php') ?>
 </html>
