@@ -1,5 +1,5 @@
-<?php include('header.php') ?>
-<?php include('footer.php') ?>
+
+
 <?php include('sidebar.php') ?>
 <?php include('dbConnect.php') ?>
 
@@ -25,7 +25,7 @@
     <link href="styles/blog.css" rel="stylesheet">
     <link href="styles/styles.css" rel="stylesheet">
 </head>
-
+<?php include('header.php') ?>
 <body>
 
 <?php
@@ -92,4 +92,5 @@
 
 
 </body>
+<?php include('footer.php') ?>
 </html>

@@ -1,7 +1,8 @@
-<?php include('header.php') ?>
-<?php include('footer.php') ?>
+
+
 <?php include('sidebar.php') ?>
-<?php include('dbConnect.php') ?>
+<?php include('dbConnect.php')?>
+
 
 
 
@@ -24,7 +25,7 @@
     <link href="styles/blog.css" rel="stylesheet">
     <link href="styles/styles.css" rel="stylesheet">
 </head>
-
+<?php include('header.php') ?>
 <body>
 
 
@@ -33,29 +34,32 @@
     <div class="row">
 
         <div class="col-sm-8 blog-main"> 
-            <?php
-                  if (isset($_GET['post_id'])) {
-                  $sql = "SELECT * 
-                  FROM posts as p INNER JOIN comments AS c ON p.post_id = c.id
-                  WHERE p.id = {$_GET['post_id']}";
-                  $statement = $connection->prepare($sql);
-                  $statement->execute();
-                  $statement->setFetchMode(PDO::FETCH_ASSOC);
-                  $singlePost = $statement->fetchAll();
+            
+                 <?php
+
+                 $sql = "SELECT * FROM posts WHERE id = {$_GET['id']};";
+                 $statement = $connection->prepare($sql);
+                 $statement->execute();
+                 $statement->setFetchMode(PDO::FETCH_ASSOC);
+                 $singlePost = $statement->fetch();
+                
+
+                 $sql = "SELECT * FROM comments WHERE post_id={$_GET['id']}";
+                 $statement = $connection->prepare($sql);
+                 $statement->execute();
+                 $statement->setFetchMode(PDO::FETCH_ASSOC);
+                 $comments = $statement->fetchAll();
+ 
+             ?>
 
 
-                  $sql2 = "SELECT c.autor, c.post_id, c.text FROM comments AS c INNER JOIN posts as p ON c.post_id = p.id WHERE c.post_id = {$_GET['post_id']}";
-                    $statement = $conn->prepare($sql2);
-                    $statement->execute();
-                    $statement->setFetchMode(PDO::FETCH_ASSOC);
-                    $comments =  $statement->fetchAll();
-                  }
+                  <?php
 
                   foreach ($comments as $comment) {
                   ?>
             <div class="blog-post">
-                <h2 class="blog-post-title">Sample blog post</h2>
-                <p class="blog-post-meta">January 1, 2014 by <a href="#"><?php echo $comment['author'] ?></a></p>
+                <h2 class="blog-post-title"><?php echo $singlePost['title'] ?></h2>
+                <p class="blog-post-meta"><?php echo $singlePost['created_at']?><a href="#"><?php echo $comment['author'] ?></a></p>
 
                 
                 <ul>
@@ -71,8 +75,8 @@
             </div><!-- /.blog-post -->
 
             <div class="blog-post">
-                <h2 class="blog-post-title">Another blog post</h2>
-                <p class="blog-post-meta">December 23, 2013 by <a href="#"><?php echo $comment['author'] ?></a></p>
+                <h2 class="blog-post-title"><?php echo $singlePost['title'] ?></h2>
+                <p class="blog-post-meta"><?php echo $singlePost['created_at']?><a href="#"><?php echo $comment['author'] ?></a></p>
 
                 <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
                 <blockquote>
@@ -83,8 +87,8 @@
             </div><!-- /.blog-post -->
 
             <div class="blog-post">
-                <h2 class="blog-post-title">New feature</h2>
-                <p class="blog-post-meta">December 14, 2013 by <a href="#"><?php echo $comment['author'] ?></a></p>
+                <h2 class="blog-post-title"><?php echo $singlePost['title'] ?></h2>
+                <p class="blog-post-meta"><?php echo $singlePost['created_at']?><a href="#"><?php echo $comment['author'] ?></a></p>
 
                 <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
                 <ul>
@@ -109,4 +113,5 @@
 
 
 </body>
+<?php include('footer.php') ?>
 </html>
