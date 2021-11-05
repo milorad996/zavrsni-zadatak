@@ -32,7 +32,7 @@
 
             <?php
 
-                $sql = "SELECT * FROM posts WHERE id = {$_GET['id']}";
+                $sql = "SELECT * FROM posts WHERE id = {$_GET['post_id']}";
                 $statement = $connection->prepare($sql);
                 $statement->execute();
                 $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -61,7 +61,7 @@
 
         <div class="comments">
             <?php
-                $sql = "SELECT * FROM comments WHERE post_id={$_GET['id']}";
+                $sql = "SELECT * FROM comments WHERE id={$_GET['post_id']}";
                 $statement = $connection->prepare($sql);
                 $statement->execute();
                 $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -75,22 +75,7 @@
                             
         </div>
 
-        <?php if (!empty($error)) { ?>
-            <span class="alert alert-danger"><?php echo $error; ?></span>
-        <?php } ?>
-
-        <form action= "createComment.php" method ="post">
-            <div class="form-group">
-                <input type="text" name="author"placeholder = "Author" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <textarea name="comment" rows="3" cols="20" placeholder="Comment "class="form-control"></textarea>
-            </div>
-
-            <input type="hidden" value="<?php echo $_GET['id']; ?>" name="post_id">
-            <input type="submit" value="Submit" class="btn btm-primary">
-        </form>
+        
         <?php include('comments.php'); ?>
 
         </div>
