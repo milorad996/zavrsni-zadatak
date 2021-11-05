@@ -29,7 +29,7 @@
                 
                 
 
-                $sql = "SELECT id, title, body, author, created_at FROM posts ORDER BY created_at DESC " ;
+                $sql = "SELECT id, title, body, author_id, created_at FROM posts ORDER BY created_at DESC " ;
                 $statement = $connection->prepare($sql);
                 
                 $statement->execute();

@@ -31,16 +31,16 @@
 
 
 if(isset($_POST['submit'])){
-    $body = $_POST["body"];
-    $title = $_POST["title"];
-    $author = $_POST["author_id"];
-    $currentDate =  date("Y-m-d h:i");
+    $firstName = $_POST["FirstName"];
+    $lastName = $_POST["LastName"];
+    $gender = $_POST["gender"];
+    
 
-    if(empty($author) || empty($body) || empty($title) ){
+    if(empty($firstName) || empty($lastName) || empty($gender) ){
          echo('Nesto nije u redu');
         return;
     }else{
-        $sql = "INSERT INTO posts (title,body,author_id,created_at) VALUES ('$title', '$body', '$author', '$currentDate')";
+        $sql = "INSERT INTO author (FirstName,LastName,gender) VALUES ('$firstName', '$lastName', '$gender')";
         $statement = $connection->prepare($sql);
         $statement->execute();
 
@@ -51,9 +51,12 @@ if(isset($_POST['submit'])){
 ?>
 <div>
 <form action = "create-post.php" method="POST" id="postsForma" >
-        <input type="text" name="title" placeholder="Title" id="titlePosts"></input><br>        
-        <input type="text" name="author_id" placeholder="author" id="titlePosts"></input><br>        
-        <textarea name="body" placeholder ="Enter Post" rows = "10" id="bodyPosts"></textarea><br>
+        <input type="text" name="FirstName" placeholder="FirstName" id="titlePosts"></input><br>        
+        <input type="text" name="LastName" placeholder="LastName" id="titlePosts"></input><br> 
+        <input type="radio" id="gender" name="gender" value="M">
+        <label for="gender">M</label><br>
+        <input type="radio" id="gender" name="gender" value="Z">
+        <label for="gender">Z</label><br>
         <button type="submit" name="submit">Submit</button>
     </form>
 </div>

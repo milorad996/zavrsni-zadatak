@@ -44,7 +44,7 @@
             <article class="va-c-article">
                 <header>
                     <h1><?php echo ($singlePost['title']) ?></h1>
-                    <div class="va-c-article__meta"><?php echo($singlePost['created_at']) ?> <?php echo($singlePost['author']) ?></div>
+                    <div class="va-c-article__meta"><?php echo($singlePost['created_at']) ?> <?php echo($singlePost['author_id']) ?></div>
                 </header>
 
                 <div>
